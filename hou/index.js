@@ -38,19 +38,23 @@ app.get('/index',indexControllers.index);
 
 var addProductController=require('./Controllers/addProductController');
 //产品添加页面路由
-app.get('/addProdcut',addProductController.addProdcut);
+app.get('/addProduct',addProductController.addProduct);
 //提交产品
 app.post('/addProductAction',urlencodedParser,addProductController.addProductAction);
 app.post("/upload",multer({dest: __dirname + '/public/upload/'}).array('file'),addProductController.upload);
 //查询产品
 var selectProductController = require('./Controllers/selectProductController');
-app.get('/selectProdcut',selectProductController.selectProdcut);
+app.get('/selectProduct',selectProductController.selectProduct);
 app.post('/selectProductAction',urlencodedParser,selectProductController.selectProductAction);
-
-
-
-//好
-
+//删除商品
+var deleteProductController = require('./Controllers/deleteProductController');
+app.get('/deleteProduct',deleteProductController.deleteProduct);
+app.post('/deleteProduct',selectProductController.deleteProductProduct);
+//修改产品信息
+var updateControllers = require('./Controllers/updateControllers');
+app.get('/updateProduct',updateControllers.updateProduct);
+app.post('/updateProductAction',updateControllers.selectProductAction);
+app.post('/addProductActionTwo',updateControllers.addProductActionTwo);
 
 
 

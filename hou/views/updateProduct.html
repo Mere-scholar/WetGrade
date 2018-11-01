@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+	<meta charset="utf-8">
+    <title>时尚潮品-增加商品</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    
+    <!-- Le styles -->
+    <link href="http://fonts.googleapis.com/css?family=Oxygen|Marck+Script" rel="stylesheet" type="text/css">
+    <link href="assets/css/bootstrap.css" rel="stylesheet">
+    <link href="assets/css/font-awesome.css" rel="stylesheet">
+    <link href="assets/css/admin.css" rel="stylesheet">
+    
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+	    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/bootstrap.js"></script>
+
+	<![endif]-->
+	<link rel="stylesheet" type="text/css" href="https://cdn.staticfile.org/webuploader/0.1.1/webuploader.css">
+	<script src="https://cdn.staticfile.org/webuploader/0.1.1/webuploader.min.js"></script>
+	<script src="https://cdn.staticfile.org/webuploader/0.1.1/Uploader.swf"></script>
+</head>    
+<body>
+
+<div class="container">
+		
+	<div class="row">
+		<!--使用ejs模板-->
+		<% include menu.html%>
+		<div class="span10">
+			<!--操作区域顶部-->
+			<% include masthead.html%>
+			<!--管理员信息-->
+			<div class="adminInfo">
+				<div class="page-header">
+					<h2>修改商品信息</h2>
+				</div>
+				<!--输入产品分类新型查询-->
+				<div class="input-group" style="border-bottom: 2px solid #ccc;">
+					<input type="text" name="table_search" class="form-control input-sm "  placeholder="查询要修改的商品编号" style="margin-top: 10px;" id="productType"/>
+					<div class="input-group-btn" style="display: inline-block" onclick="selectProduct()" id="delAfter">
+						<button class="btn  btn-default"><i class="icon-search"></i></button>
+					</div>
+				</div>
+				<div id="updateInfo">
+					<div class="slate">
+						<div class="page-header">
+							<h2>商品编号: <span id="productNum">000000</span></h2>
+						</div>
+						<fieldset>
+							<!--产品名称-->
+							<div class="control-group">
+								<label class="control-label" for="productName">产品名称</label>
+								<div class="controls">
+									<input type="text" class="input-xlarge" id="productName">
+								</div>
+							</div>
+							<!--产品价格-->
+							<div class="control-group">
+								<label class="control-label" for="productPrice">产品价格</label>
+								<div class="controls">
+									<input type="text" class="input-xlarge" id="productPrice">
+								</div>
+							</div>
+							<!--产品颜色-->
+							<div class="control-group">
+								<label class="control-label" for="colorSelect">产品颜色</label>
+								<div class="controls">
+									<select multiple="multiple" id="colorSelect">
+										<option>颜色</option>
+										<option>红色</option>
+										<option>蓝色</option>
+										<option>绿色</option>
+										<option>黄色</option>
+									</select>
+								</div>
+							</div>
+							<!--产品尺寸-->
+							<div class="control-group">
+								<label class="control-label" for="sizeSelect">产品尺寸</label>
+								<div class="controls">
+									<select multiple="multiple" id="sizeSelect">
+										<option>X</option>
+										<option>M</option>
+										<option>XM</option>
+										<option>XL</option>
+										<option>XXL</option>
+									</select>
+								</div>
+							</div>
+							<!--产品的介绍-->
+							<div class="control-group">
+								<label class="control-label" for="textarea">产品的介绍</label>
+								<div class="controls">
+									<textarea class="input-xlarge" id='textarea' rows="3" style="resize: none;"></textarea>
+								</div>
+							</div>
+							<!--商品图片-->
+							<div class="control-group">
+								<div id="uploader-demo">
+									<!--用来存放item-->
+									<div id="fileList" class="uploader-list"></div>
+									<div id="filePicker">选择图片</div>
+									<div style="width: 59px;height: 28px; position: relative;top: -42px;left: 145px;line-height: 28px" id="delImage" class="btn btn-danger">删除图片</div>
+								</div>
+							</div>
+							<div id="imgBox" class="tupian" style="margin-top: -40px;margin-bottom: 10px"></div>
+
+							<div id="key" style="display: none"></div>
+
+							<button onclick="addProduct()">保存更改</button>
+						</fieldset>
+					</div>
+				</div>
+				<!--使用ajax提交商品编号将商品信息显示出来-->
+				<script src="assets/js/updateProduct.js"></script>
+			</div>
+		</div> <!-- end span10 -->
+		
+	</div> <!-- end row -->
+		
+</div> <!-- end container -->
+
+<!-- Le javascript
+================================================== -->
+
+
+</body>
+</html>
