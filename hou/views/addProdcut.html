@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+    <title>时尚潮品-增加商品</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <link href="http://fonts.googleapis.com/css?family=Oxygen|Marck+Script" rel="stylesheet" type="text/css">
+    <link href="assets/css/bootstrap.css" rel="stylesheet">
+    <link href="assets/css/font-awesome.css" rel="stylesheet">
+    <link href="assets/css/admin.css" rel="stylesheet">
+
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/bootstrap.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="https://cdn.staticfile.org/webuploader/0.1.1/webuploader.css">
+	<script src="https://cdn.staticfile.org/webuploader/0.1.1/webuploader.min.js"></script>
+	<script src="https://cdn.staticfile.org/webuploader/0.1.1/Uploader.swf"></script>
+</head>
+<body>
+
+<div class="container">
+		
+	<div class="row">
+		<!--使用ejs模板-->
+		<% include menu.html%>
+
+		<div class="span10">
+			<!--操作区域顶部-->
+			<% include masthead.html%>
+			<!--管理员信息-->
+			<div class="adminInfo">
+
+				<!--========================================-->
+				<div class="slate">
+
+					<div class="slate">
+
+						<div class="page-header">
+							<h2>增加商品</h2>
+						</div>
+						<fieldset>
+							<!--产品名称-->
+							<div class="control-group">
+								<label class="control-label" for="productName">产品名称</label>
+								<div class="controls">
+									<input type="text" class="input-xlarge" id="productName">
+								</div>
+							</div>
+							<!--产品价格-->
+							<div class="control-group">
+								<label class="control-label" for="productPrice">产品价格</label>
+								<div class="controls">
+									<input type="text" class="input-xlarge" id="productPrice">
+								</div>
+							</div>
+							<!--产品颜色-->
+							<div class="control-group">
+								<label class="control-label" for="colorSelect">产品颜色</label>
+								<div class="controls">
+									<select multiple="multiple" id="colorSelect">
+										<option>颜色</option>
+										<option>红色</option>
+										<option>蓝色</option>
+										<option>绿色</option>
+										<option>黄色</option>
+									</select>
+								</div>
+							</div>
+							<!--产品尺寸-->
+							<div class="control-group">
+								<label class="control-label" for="sizeSelect">产品尺寸</label>
+								<div class="controls">
+									<select multiple="multiple" id="sizeSelect">
+										<option>X</option>
+										<option>M</option>
+										<option>XM</option>
+										<option>XL</option>
+										<option>XXL</option>
+									</select>
+								</div>
+							</div>
+							<!--产品的介绍-->
+							<div class="control-group">
+								<label class="control-label" for="textarea">产品的介绍</label>
+								<div class="controls">
+									<textarea class="input-xlarge" id='textarea' rows="3" style="resize: none;"></textarea>
+								</div>
+							</div>
+
+							<!--商品图片-->
+
+							<div class="control-group">
+								<div id="uploader-demo">
+									<!--用来存放item-->
+									<div id="fileList" class="uploader-list"></div>
+									<div id="filePicker">选择图片</div>
+								</div>
+							</div>
+							<div id="imgBox"></div>
+
+							<div id="key" style="display: none"></div>
+
+							<button onclick="addProduct()">提交产品</button>
+						</fieldset>
+						<script>
+                            // 初始化Web Uploader
+                            var uploader = WebUploader.create({
+                                // 选完文件后，是否自动上传。
+                                auto: true,
+                                // swf文件路径
+                                swf: 'https://cdn.staticfile.org/webuploader/0.1.1/Uploader.swf',
+                                // 文件接收服务端。
+                                server: 'upload',
+                                // 选择文件的按钮。可选。
+                                // 内部根据当前运行是创建，可能是input元素，也可能是flash.
+                                pick: '#filePicker',
+                                // 只允许选择图片文件。
+                                accept: {
+                                    title: 'Images',
+                                    extensions: 'gif,jpg,jpeg,bmp,png',
+                                    mimeTypes: 'image/*'
+                                }
+                            });
+                            // 文件上传成功，给item添加成功class, 用样式标记上传成功。
+                            uploader.on( 'uploadSuccess', function( file ,response) {
+                                console.log(response.key);
+                                //获得服务器的图片
+                                var imgBox  =document.getElementById('imgBox');
+                                var url = response.url;
+                                var img = document.createElement('img');
+                                img.src=url;
+                                img.style.width="200px";
+                                img.style.height="200px";
+                                img.style.margin = "5px";
+                                var input = document.getElementById('key');
+                                input.innerHTML=response.key;
+                                imgBox.appendChild(img);
+                            });
+                            // 文件上传失败，显示上传出错。
+                            uploader.on( 'uploadError', function( file ) {
+
+                            });
+                            function addProduct() {
+                                var name=document.getElementById('productName');
+                                var productPrice=document.getElementById('productPrice');
+                                var sizeSelect = document.getElementById('sizeSelect');
+                                var colorSelect = document.getElementById('colorSelect');
+                                var textarea =document.getElementById('textarea');
+                                var key = document.getElementById('key');
+                                $.ajax({
+                                    url: 'addProductAction',
+                                    type: "POST",
+                                    data: {
+                                        name: name.value,
+                                        sizeSelect: sizeSelect.value,
+                                        colorSelect:colorSelect.value,
+                                        textarea:textarea.value,
+                                        key:key.innerHTML,
+                                        productPrice:productPrice.value
+                                    },
+                                    traditional: true,//这里设置为true
+                                    success: function(data) {
+                                        alert(JSON.stringify(data));
+                                    }
+                                });
+                            }
+						</script>
+					</div>
+
+				</div>
+
+
+			</div>
+		</div> <!-- end span10 -->
+		
+	</div> <!-- end row -->
+		
+</div> <!-- end container -->
+
+
+
+</body>
+
+
+
+</html>
