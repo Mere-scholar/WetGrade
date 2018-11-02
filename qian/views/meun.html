@@ -1,0 +1,62 @@
+<div class="header">
+    <div class="header-top">
+        <div class="container">
+            <div class="header-grid">
+                <ul>
+                    <li><a href="articles" class="scroll">Articles</a></li>
+                    <li><a href="contact" class="scroll">Contact  </a></li>
+                    <li><a href="privacy" class="scroll">Privacy</a></li>
+                </ul>
+            </div>
+            <div class="header-grid-right" >
+                <a href="#" class="sign-in">登录</a>
+                <form method="post" action="/signup">
+                    <input type="text" value="" placeholder="请输入账号" id="Username" name="Username" onfocus="this.placeholder='';" onblur="if (this.placeholder == '') {this.placeholder ='请输入账号';}">
+                    <input type="password" value=""placeholder="请输入密码" id="Password" name="Password" onfocus="this.placeholder='';" onblur="if (this.placeholder == '') {this.placeholder ='请输入密码';}">
+                    <input type="button" value="Go"  onclick="signIn()"  >
+                </form>
+                <label>|</label>
+                <a href="signup" class="sign-up">注册</a>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="header-bottom">
+            <div class="logo">
+                <a href="index"><img src="images/logo.png" alt=" " ></a>
+            </div>
+            <div class="ad-right">
+                <img class="img-responsive" src="images/ad.png" alt=" " >
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+        <div class="header-bottom-bottom">
+            <div class="top-nav">
+                <span class="menu"> </span>
+                <ul>
+                    <li class="active"><a href="index">HOME </a></li>
+                    <li><a href="men" >MEN</a></li>
+                    <li><a href="women" >WOMEN</a></li>
+                    <li><a href="collection" >COLLECTION</a></li>
+                    <li><a href="collection" >STORE PRODUCTS</a></li>
+                    <li><a href="collection" >LATEST  PRODUCT</a></li>
+                </ul>
+                <script>
+                    $("span.menu").click(function(){
+                        $(".top-nav ul").slideToggle(500, function(){
+                        });
+                    });
+                </script>
+                <div class="clearfix"> </div>
+            </div>
+            <div class="search">
+                <form>
+                    <input type="text" value="Search" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}" >
+                    <input type="submit"  value="">
+                </form>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+</div>

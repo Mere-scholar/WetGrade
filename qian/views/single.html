@@ -47,70 +47,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </head>
 <body> 
 	  <!--header-->
-		<div class="header">
-		<div class="header-top">
-			<div class="container">
-				<div class="header-grid">
-					<ul>
-						<li  ><a href="articles" class="scroll">Articles</a></li>
-						<li><a href="contact" class="scroll">Contact  </a></li>
-						<li><a href="privacy" class="scroll">Privacy</a></li>
-						<li><a href="#" class="scroll">Terms</a></li>						
-					</ul>
-				</div>
-				<div class="header-grid-right">
-					<a href="#" class="sign-in">Sign In</a>
-					<form>
-						<input type="text" value="Username" onfocus="this.value='';" onblur="if (this.value == '') {this.value ='';}">
-						<input type="text" value="Password" onfocus="this.value='';" onblur="if (this.value == '') {this.value ='';}">
-						<input type="submit" value="Go" >
-					</form>
-					<label>|</label>
-					<a href="signup" class="sign-up">Sign Up</a>
-				</div>
-				<div class="clearfix"> </div>
-				
-			</div>
-		</div>
-		<div class="container">
-		<div class="header-bottom">			
-				<div class="logo">
-					<a href="index"><img src="images/logo.png" alt=" " ></a>
-				</div>
-					<div class="ad-right">
-					<img src="images/ad.png" alt=" " >
-				</div>
-				<div class="clearfix"> </div>
-			</div>	
-			<div class="header-bottom-bottom">
-				<div class="top-nav">
-					<span class="menu"> </span>
-					<ul>
-						<li ><a href="index">HOME </a></li>
-						<li><a href="men" >MEN</a></li>
-						<li><a href="women" >WOMEN</a></li>
-						<li class="active"><a href="collection" >COLLECTION</a></li>
-						<li><a href="collection" >STORE PRODUCTS</a></li>
-						<li><a href="collection" >LATEST  PRODUCT</a></li>
-					</ul>	
-				<script>
-					$("span.menu").click(function(){
-						$(".top-nav ul").slideToggle(500, function(){
-						});
-					});
-				</script>					
-					<div class="clearfix"> </div>					
-				</div>
-				<div class="search">
-					<form>
-						<input type="text" value="Search" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}" >
-						<input type="submit"  value="">
-					</form>
-				</div>
-				<div class="clearfix"> </div>
-				</div>
-		</div>
-	</div>
+	  <% include meun.html %>
 	<!--content-->
 	<div class="content">
 		<div class="container">

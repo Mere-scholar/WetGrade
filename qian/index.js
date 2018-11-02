@@ -16,7 +16,6 @@ app.set('view engine', 'html');
 app.engine('html', require('ejs').__express);
 //5,静态文件
 app.use(express.static('public'));
-// app.use(express.static('views'));
 //6,引入body-parser模块
 var bodyParser = require('body-parser');
 //7，创建 application/x-www-form-urlencoded 编码解析
