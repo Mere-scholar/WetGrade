@@ -8,11 +8,11 @@ exports.register=function (req,res) {
 
     //2,向业务层要数据
     //(1),引入UserService模块
-    var AdminLoginService = require('../Service/adminLoginService');
+    var adminRegisterService = require('../Service/adminRegisterService');
     //(2),创建UserService对象
-    var adminLoginService = new AdminLoginService();
+    var adminRegisterService = new adminRegisterService();
     //(3),插入用户
-    adminLoginService.insert(name,password,function(result){
+    adminRegisterService.insert(name,password,function(result){
         //3,把数据传给view
         res.json(result);
     });

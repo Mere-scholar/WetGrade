@@ -41,7 +41,10 @@
                     },
                     traditional: true,//这里设置为true
                     success: function(data) {
+                        // alert(data);
                     	if (data.insertId == '-1') {
+                            alert(data.msg);
+						}else{
                             alert(data.msg);
 						}
                     }
