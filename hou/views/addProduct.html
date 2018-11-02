@@ -89,9 +89,7 @@
 									<textarea class="input-xlarge" id='textarea' rows="3" style="resize: none;"></textarea>
 								</div>
 							</div>
-
 							<!--商品图片-->
-
 							<div class="control-group">
 								<div id="uploader-demo">
 									<!--用来存放item-->
@@ -146,6 +144,8 @@
                             function addProduct() {
                                 var name=document.getElementById('productName');
                                 var productPrice=document.getElementById('productPrice');
+                                var image_url=document.getElementById('imgBox');
+                                console.log(image_url);
                                 var sizeSelect = document.getElementById('sizeSelect');
                                 var colorSelect = document.getElementById('colorSelect');
                                 var textarea =document.getElementById('textarea');
@@ -159,7 +159,8 @@
                                         colorSelect:colorSelect.value,
                                         textarea:textarea.value,
                                         key:key.innerHTML,
-                                        productPrice:productPrice.value
+                                        productPrice:productPrice.value,
+                                        image_url:image_url.innerHTML
                                     },
                                     traditional: true,//这里设置为true
                                     success: function(data) {

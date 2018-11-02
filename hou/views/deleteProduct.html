@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+    <title>时尚潮品-增加商品</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <link href="http://fonts.googleapis.com/css?family=Oxygen|Marck+Script" rel="stylesheet" type="text/css">
+    <link href="assets/css/bootstrap.css" rel="stylesheet">
+    <link href="assets/css/font-awesome.css" rel="stylesheet">
+    <link href="assets/css/admin.css" rel="stylesheet">
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/bootstrap.js"></script>
+</head>
+<style>
+	#productHandleDel,#productHandleUpdate{
+		display: inline-block;
+		width: 48px;
+		text-align: center;
+	}
+	#outHide{
+		width: 200px;
+		height: 20px;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+		overflow: hidden;
+		padding-top: 10px;
+	}
+	.del{
+		cursor: pointer;
+	}
+</style>
+<body>
+
+<div class="container">
+	<div class="row">
+		<!--使用ejs模板-->
+		<% include menu.html%>
+		<div class="span10">
+			<!--操作区域顶部-->
+			<% include masthead.html%>
+			<!--管理员信息-->
+			<div class="adminInfo">
+				<!--========================================-->
+				<div class="slate">
+					<div class="slate">
+						<div class="page-header">
+							<h2>删除商品</h2>
+						</div>
+						<!--输入产品分类新型查询-->
+						<div class="input-group" style="border-bottom: 2px solid #ccc;">
+							<input type="text" name="table_search" class="form-control input-sm "  placeholder="检索要删除的商品名称" style="margin-top: 10px;" id="productType"/>
+							<div class="input-group-btn" style="display: inline-block" onclick="selectProduct()" id="delAfter">
+								<button class="btn  btn-default"><i class="icon-search"></i></button>
+							</div>
+						</div>
+						<!--==================================-->
+						<div class="panel" style="margin-top: 20px;">
+							<header class="panel-heading" style="margin: 20px 0;">查询的内容为：<span id="productSelectName"></span> ，共 <span id="productSelectNum"></span>条记录</header>
+							<div class="panel-body" style="height: 400px;">
+								<table class="table table-bordered" id="getProductValue">
+									<tr>
+										<th style="width: 70px;text-align: center;">商品编号</th>
+										<th style="text-align: center;">名称</th>
+										<th style="text-align: center;">价格</th>
+										<th style="text-align: center;">尺寸</th>
+										<th style="text-align: center;">颜色</th>
+										<th style="text-align: center;">介绍</th>
+										<th style="width: 100px;text-align: center;">操作</th>
+									</tr>
+									<p id="notFound" style="display: block; width: 800px;text-align: center;font-size: 28px;position: absolute;top: 110%;">暂无查询操作</p>
+									<!--点击搜索按钮显示查询信息-->
+									<script>
+										function selectProduct() {
+                                            var productType=document.getElementById('productType');
+                                            var notFound = document.getElementById('notFound');
+                                            $.ajax({
+                                                url: 'selectProductAction',
+                                                type: "POST",
+                                                data: {
+                                                    productType:productType.value
+                                                },
+                                                traditional: true,//这里设置为true
+                                                success: function(data) {
+                                                    // console.log(data.length);
+													if (data.insertId == "-1"){
+													    notFound.style.display = "block";
+													}else{
+                                                        //如果用户输入的不为空且查询到的结果不为空
+                                                        notFound.style.display = "none";
+                                                    //  获取table元素，将获取的元素插入到页面中
+                                                        var oTable = document.querySelector('#getProductValue');
+														for (var i = 0;i<data.length;i++) {
+                                                            var tr = document.createElement('tr');
+                                                            tr.innerHTML = `
+																<td>${data[i].id}</td>
+																<td>${data[i].name}</td>
+																<td>${data[i].productPrice}</td>
+																<td>${data[i].sizeSelect_id}</td>
+																<td>${data[i].colorSelect_id}</td>
+																<td>${data[i].textarea}</td>
+																<td style="text-align: center;"><a class="del">删除</a></td>
+															`;
+                                                            oTable.appendChild(tr);
+                                                            var productSelectName = document.querySelector("#productSelectName");
+                                                            var productSelectNum = document.querySelector("#productSelectNum");
+                                                            productSelectName.innerHTML = data[i].name;
+                                                            productSelectNum.innerHTML = data.length;
+														}
+													}
+                                                    var del = document.querySelectorAll(".del");
+													// console.log(del);
+                                                    for (var i = 0;i<del.length;i++){
+														del[i].index = i;
+                                                        del[i].onclick = function () {
+                                                            var ID = this.parentNode.parentNode.firstElementChild.innerHTML;
+                                                            var that = this.parentNode.parentNode;
+                                                            console.log(that);
+                                                            $.ajax({
+                                                                url: 'deleteProduct',
+                                                                type: "POST",
+                                                                data: {
+                                                                    id:ID,
+                                                                },
+                                                                traditional: true,//这里设置为true
+                                                                success: function(data) {
+                                                                    if (data.fieldCount == 0) {
+                                                                        // alert(data.fieldCount);
+                                                                        alert("删除数据成功！");
+                                                                        that.remove();
+																	}
+                                                                }
+                                                            });
+                                                        }
+                                                    }
+                                                }
+                                            });
+                                        };
+									</script>
+
+								</table>
+
+							</div><!-- /.panel-body -->
+							<!--页面切换-->
+							<!--<div class="table-foot">-->
+								<!--<ul class="pagination pagination-sm no-margin pull-right">-->
+									<!--<li><a href="#">&laquo;</a></li>-->
+									<!--<li><a href="#">1</a></li>-->
+									<!--<li><a href="#">2</a></li>-->
+									<!--<li><a href="#">3</a></li>-->
+									<!--<li><a href="#">&raquo;</a></li>-->
+								<!--</ul>-->
+							<!--</div>-->
+						</div><!-- /.panel -->
+
+
+						<!--========================-->
+					</div>
+				</div>
+			</div>
+		</div> <!-- end span10 -->
+		
+	</div> <!-- end row -->
+		
+</div> <!-- end container -->
+
+
+
+</body>
+
+
+
+</html>
