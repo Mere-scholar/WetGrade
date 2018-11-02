@@ -50,7 +50,7 @@ function ProductService() {
                 body = result;
             }
             call(body);
-        })
+        });
     };
     //删除产品
     this.deleteProduct = function (data,call) {

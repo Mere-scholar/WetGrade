@@ -5,31 +5,57 @@
 <title>纸叠效果会员登录界面模板</title>
 <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
 <link rel="stylesheet" type="text/css" href="assets/css/body.css"/>
+<script src="assets/js/jquery.min.js"></script>
 </head>
 <body>
 <div class="container">
 	<section id="content">
 		<form action="">
-			<h1>会员登录</h1>
+			<h1>管理员登录</h1>
 			<div>
-				<input type="text" placeholder="邮箱" required="" id="username" />
+				<input type="text" placeholder="用户名" required="" id="adminName" />
 			</div>
 			<div>
-				<input type="password" placeholder="密码" required="" id="password" />
+				<input type="password" placeholder="密码" required="" id="adminPassword" />
 			</div>
 			 <div class="">
 				<span class="help-block u-errormessage" id="js-server-helpinfo">&nbsp;</span>			</div> 
 			<div>
 				<!-- <input type="submit" value="Log in" /> -->
-				<input type="submit" value="登录" class="btn btn-primary" id="js-btn-login"/>
-				<a href="#">忘记密码?</a>
-				<!-- <a href="#">Register</a> -->
+				<input type="button" value="登录" class="btn btn-primary" id="js-btn-login" onclick="login()"/>
+				<a href="adminRegister" style="color: #f00;text-decoration: none;">还没有账号 立即注册</a>
 			</div>
 		</form><!-- form -->
+		<script>
+			function login() {
+			    var adminName = document.getElementById("adminName");
+			    var adminPassword = document.getElementById("adminPassword");
+                $.ajax({
+                    url: 'adminLogin',
+                    type: "POST",
+                    data: {
+                        adminName:adminName.value,
+                        adminPassword:adminPassword.value
+                    },
+                    traditional: true,//这里设置为true
+                    success: function(data) {
+                        if (data.state == 0){
+							alert(data.msg)
+						}else if(data.state == 1){
+                            alert(data.msg)
+						}
+                    }
+                });
+            }
+		</script>
 	</section><!-- content -->
 </div>
 <!-- container -->
 
+<!--<script src="assets/js/bootstrap.js"></script>-->
+<!--<script src="assets/js/excanvas.min.js"></script>-->
+<!--<script src="assets/js/jquery.flot.min.js"></script>-->
+<!--<script src="assets/js/jquery.flot.resize.js"></script>-->
 
 <br><br><br><br>
 <div style="text-align:center;">

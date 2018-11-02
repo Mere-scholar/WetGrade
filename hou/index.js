@@ -32,6 +32,8 @@ app.use(bodyParser.urlencoded({extended: true}));
 //后台登陆页面
 var loginControllers = require('./Controllers/loginControllers');
 app.get('/admin',loginControllers.admin);
+//后台管理员登陆时进行的验证
+app.post('/adminLogin',loginControllers.adminLogin);
 //后台管理首页
 var indexControllers = require('./Controllers/indexControllers');
 app.get('/index',indexControllers.index);
