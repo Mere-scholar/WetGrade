@@ -71,7 +71,7 @@ a.sign-in{
 	font-weight: 600;
 }
 .tlinks{text-indent:-9999px;height:0;line-height:0;font-size:0;overflow:hidden;}
-.header-grid-right input[type="text"],.header-grid-right input[type="submit"]{
+.header-grid-right input[type="text"],.header-grid-right input[type="password"], .header-grid-right input[type="submit"],.header-grid-right input[type="button"]{
 	outline: none;
 	border: none;
 	background: #4a4a4a;
@@ -87,7 +87,7 @@ a.sign-in{
 	width: 27%;
 	margin-right: 18px;
 }
-.header-grid-right input[type="submit"]{
+.header-grid-right input[type="submit"],.header-grid-right input[type="button"]{
 	background: #ea6a53;
 	width: 7%;
 	margin-right: 25px;
@@ -1330,8 +1330,8 @@ padding: 2em;
 	display: block;
 	text-transform: uppercase;
 }
-.register-top-grid input[type="text"] {
-	border: 1px solid #EEE;
+.register-top-grid input{
+	border: 1px solid #e8e8e8;
 	outline-color:#bc3726;
 	width: 70%;
 	font-size: 1em;

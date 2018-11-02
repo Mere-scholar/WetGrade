@@ -39,8 +39,11 @@ var privacyControllers = require('./Controllers/privacyControllers');
 app.get('/privacy',privacyControllers.privacy);
 //signup页面
 var signupControllers = require('./Controllers/signupControllers');
+var signInControllers = require('./Controllers/signInControllers');
 app.get('/signup',signupControllers.signup);
-
+app.get('/signup',signInControllers.signup);
+app.post('/signupAction',urlencodedParser,signupControllers.signupAction);
+app.post('/signInAction',urlencodedParser,signInControllers.signInAction);
+app.use(express.static('views'));
 //this is //this is a this
-
 app.listen(8888);
