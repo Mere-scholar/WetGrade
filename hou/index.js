@@ -62,6 +62,9 @@ var updateControllers = require('./Controllers/updateControllers');
 app.get('/updateProduct',updateControllers.updateProduct);  //跳转到修改产品信息页面
 app.post('/updateProductAction',updateControllers.selectProductAction); //修改信息之前先进性搜索将要修改的产品检索出来
 app.post('/addProductActionTwo',updateControllers.addProductActionTwo); //对要修改的产品进行修改
-
+//管理首页轮播图效果
+var swiperController=require('./Controllers/swiperController');
+app.get('/swiper',swiperController.swiper);
+app.post('/swiperAction',swiperController.swiperAction);
 
 app.listen(8888);
