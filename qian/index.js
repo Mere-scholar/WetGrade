@@ -16,7 +16,7 @@ app.set('view engine', 'html');
 app.engine('html', require('ejs').__express);
 //5,静态文件
 app.use(express.static('public'));
-app.use(express.static('views'));
+// app.use(express.static('views'));
 //6,引入body-parser模块
 var bodyParser = require('body-parser');
 //7，创建 application/x-www-form-urlencoded 编码解析
@@ -25,6 +25,9 @@ var urlencodedParser = bodyParser.urlencoded({ extended: false });
 //首页
 var indexControllers = require('./Controllers/indexControllers');
 app.get('/index',indexControllers.index);
+//登录成功记录session
+
+
 //men页面
 var menControllers = require('./Controllers/menControllers');
 app.get('/men',menControllers.men);
