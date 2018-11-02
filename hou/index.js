@@ -67,4 +67,5 @@ var swiperController=require('./Controllers/swiperController');
 app.get('/swiper',swiperController.swiper);
 app.post('/swiperAction',swiperController.swiperAction);
 
+
 app.listen(8888);
