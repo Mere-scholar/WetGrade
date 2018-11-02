@@ -49,13 +49,13 @@
 						<!--输入产品分类新型查询-->
 						<div class="input-group" style="border-bottom: 2px solid #ccc;">
 							<input type="text" name="table_search" class="form-control input-sm "  placeholder="输入产品的分类" style="margin-top: 10px;" id="productType"/>
-							<div class="input-group-btn" style="display: inline-block" onclick="selectProduct()" id="delAfter">
+							<div class="input-group-btn" style="display: inline-block" onclick="selectProduct()">
 								<button class="btn  btn-default"><i class="icon-search"></i></button>
 							</div>
 						</div>
 						<!--==================================-->
 						<div class="panel" style="margin-top: 20px;">
-							<header class="panel-heading" style="margin: 20px 0;">查询的内容为：<span id="productSelectName"></span> ，共 <span id="productSelectNum"></span>条记录</header>
+							<header class="panel-heading" style="margin: 20px 0;">此处为查询的分类</header>
 							<div class="panel-body" style="height: 400px;">
 								<table class="table table-bordered" id="getProductValue">
 									<tr>
@@ -65,7 +65,7 @@
 										<th style="text-align: center;">尺寸</th>
 										<th style="text-align: center;">颜色</th>
 										<th style="text-align: center;">介绍</th>
-										<!--<th style="width: 100px;text-align: center;">操作</th>-->
+										<th style="width: 100px;text-align: center;">操作</th>
 									</tr>
 									<p id="notFound" style="display: block; width: 800px;text-align: center;font-size: 28px;position: absolute;top: 110%;">暂无查询操作</p>
 									<!--点击搜索按钮显示查询信息-->
@@ -81,50 +81,53 @@
                                                 },
                                                 traditional: true,//这里设置为true
                                                 success: function(data) {
-                                                    // console.log(data.length);
+                                                    console.log(data)
 													if (data.insertId == "-1"){
 													    notFound.style.display = "block";
 													}else{
                                                         //如果用户输入的不为空且查询到的结果不为空
                                                         notFound.style.display = "none";
-                                                    //  获取table元素，将获取的元素插入到页面中
-                                                        var oTable = document.querySelector('#getProductValue');
-														for (var i = 0;i<data.length;i++) {
-                                                            var tr = document.createElement('tr');
-                                                            tr.innerHTML = `
-																<td>${data[i].id}</td>
-																<td>${data[i].name}</td>
-																<td>${data[i].productPrice}</td>
-																<td>${data[i].sizeSelect_id}</td>
-																<td>${data[i].colorSelect_id}</td>
-																<td>${data[i].textarea}</td>
-																<!--<td>查看详情</td>-->
-															`;
-                                                            oTable.appendChild(tr);
-                                                            var productSelectName = document.querySelector("#productSelectName");
-                                                            var productSelectNum = document.querySelector("#productSelectNum");
-                                                            productSelectName.innerHTML = data[i].name;
-                                                            productSelectNum.innerHTML = data.length;
-														}
+                                                    //    获取table元素，将获取的元素插入到页面中
+														var tr = document.createElement('tr');
+
+
 													}
+
                                                 }
                                             });
-                                        };
+                                        }
+
 									</script>
+
+									<!--<tr>-->
+										<!--<td>yf_fff</td>-->
+										<!--<td>运动裤</td>-->
+										<!--<td>150</td>-->
+										<!--<td>x</td>-->
+										<!--<td>黑色</td>-->
+										<!--<td style="width: 210px;">-->
+											<!--<p id="outHide">就卡山谷霍夫卡山谷的风就卡山谷霍夫卡山谷的风就卡山谷霍夫卡山谷的风就卡山谷霍夫卡山谷的风</p>-->
+										<!--</td>-->
+										<!--<td>-->
+											<!--<a href="#" id="productHandleDel">删除</a>-->
+											<!--<a href="#" id="productHandleUpdate">修改</a>-->
+										<!--</td>-->
+									<!--</tr>-->
+
 
 								</table>
 
 							</div><!-- /.panel-body -->
 							<!--页面切换-->
-							<!--<div class="table-foot">-->
-								<!--<ul class="pagination pagination-sm no-margin pull-right">-->
-									<!--<li><a href="#">&laquo;</a></li>-->
-									<!--<li><a href="#">1</a></li>-->
-									<!--<li><a href="#">2</a></li>-->
-									<!--<li><a href="#">3</a></li>-->
-									<!--<li><a href="#">&raquo;</a></li>-->
-								<!--</ul>-->
-							<!--</div>-->
+							<div class="table-foot">
+								<ul class="pagination pagination-sm no-margin pull-right">
+									<li><a href="#">&laquo;</a></li>
+									<li><a href="#">1</a></li>
+									<li><a href="#">2</a></li>
+									<li><a href="#">3</a></li>
+									<li><a href="#">&raquo;</a></li>
+								</ul>
+							</div>
 						</div><!-- /.panel -->
 
 
