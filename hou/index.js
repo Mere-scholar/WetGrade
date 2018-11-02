@@ -37,7 +37,12 @@ app.post('/adminLogin',loginControllers.adminLogin);
 //后台管理首页
 var indexControllers = require('./Controllers/indexControllers');
 app.get('/index',indexControllers.index);
+//后台管理员注册页面
+var registerControllers = require('./Controllers/registerControllers');
+app.get('/adminRegister',registerControllers.adminRegister);
+app.post('/registerAction',urlencodedParser,registerControllers.register);
 
+//产品管理模块
 var addProductController=require('./Controllers/addProductController');
 //产品添加页面路由
 app.get('/addProduct',addProductController.addProduct);
@@ -58,6 +63,5 @@ app.get('/updateProduct',updateControllers.updateProduct);  //跳转到修改产
 app.post('/updateProductAction',updateControllers.selectProductAction); //修改信息之前先进性搜索将要修改的产品检索出来
 app.post('/addProductActionTwo',updateControllers.addProductActionTwo); //对要修改的产品进行修改
 
-//合并代码
 
 app.listen(8888);

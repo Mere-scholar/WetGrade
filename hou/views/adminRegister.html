@@ -5,6 +5,7 @@
 <title>纸叠效果会员登录界面模板</title>
 <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
 <link rel="stylesheet" type="text/css" href="assets/css/body.css"/>
+	<script src="assets/js/jquery.min.js"></script>
 </head>
 <body>
 <div class="container">
@@ -14,6 +15,7 @@
 			<div>
 				<input type="text" placeholder="用户名" required="" id="username" />
 			</div>
+
 			<div>
 				<input type="password" placeholder="密码" required="" id="password" />
 			</div>
@@ -21,10 +23,31 @@
 				<span class="help-block u-errormessage" id="js-server-helpinfo">&nbsp;</span>			</div> 
 			<div>
 				<!-- <input type="submit" value="Log in" /> -->
-				<input type="submit" value="登录" class="btn btn-primary" id="js-btn-login"/>
-				<a href="#">Register</a>
+				<input type="button" value="注册" class="btn btn-primary" id="js-btn-login" style="margin-bottom: 20px;" onclick="confirmSignup()"/>
 			</div>
 		</form><!-- form -->
+		<script>
+            function confirmSignup() {
+                //1,获得标签节点
+                var user = document.getElementById('username');
+                var password = document.getElementById('password');
+                //2，向服务器提交数据
+                $.ajax({
+                    url: 'registerAction',
+                    type: "POST",
+                    data: {
+                        name: user.value,
+                        password: password.value
+                    },
+                    traditional: true,//这里设置为true
+                    success: function(data) {
+                    	if (data.insertId == '-1') {
+                            alert(data.msg);
+						}
+                    }
+                });
+            }
+		</script>
 	</section><!-- content -->
 </div>
 <!-- container -->
