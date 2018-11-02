@@ -4,8 +4,8 @@ var fs = require("fs");
 var COS = require('cos-nodejs-sdk-v5');
 var cos = new COS({
     // 必选参数
-    SecretId: "AKID8A1hUmP2wfDc2HBDwTp0OejeOyNdHbJq",
-    SecretKey: "LZbTBmCbrwqY8Xk6JJ9nMl7M3ZxACXns",
+    SecretId: "AKIDPWcXHuTfmlZGn9eakqnZCev23tYE95Hq",
+    SecretKey: "b8iN5q8WzqkXAUs7cfcXJBrefZIev8Iz",
 });
 
 var bucketPath="hd-1257709298";
@@ -41,6 +41,5 @@ exports.getImageUrl=function (fileKey) {
         Sign: true,
     }, function (err, data) {
     });
-
     return url;
 }
