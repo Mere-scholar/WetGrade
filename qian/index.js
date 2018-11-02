@@ -41,6 +41,6 @@ app.get('/privacy',privacyControllers.privacy);
 var signupControllers = require('./Controllers/signupControllers');
 app.get('/signup',signupControllers.signup);
 
-//this is a test
+//this is
 
 app.listen(8888);
