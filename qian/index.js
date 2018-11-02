@@ -1,6 +1,12 @@
 //1,引入express
 var express = require('express');
 var app = express();
+// var session = require('express-session');
+// app.use(session({
+//     secret: '12345',
+//     name: 'express_11_cookie',   //这里的name值得是cookie的name，默认cookie的name是：connect.sid
+//     cookie: {maxAge: 80*1000 },     //设置maxAge是80000ms，即80s后session和相应的cookie失效过期
+// }));
 //2,设置模板引擎
 var path = require('path');
 //3,设置视图地址
@@ -39,11 +45,6 @@ var privacyControllers = require('./Controllers/privacyControllers');
 app.get('/privacy',privacyControllers.privacy);
 //signup页面
 var signupControllers = require('./Controllers/signupControllers');
-var signInControllers = require('./Controllers/signInControllers');
-app.get('/signup',signupControllers.signup);
-app.get('/signup',signInControllers.signup);
-app.post('/signupAction',urlencodedParser,signupControllers.signupAction);
-app.post('/signInAction',urlencodedParser,signInControllers.signInAction);
-app.use(express.static('views'));
+
 //this is //this is a this aa
 app.listen(8888);

@@ -1,7 +1,7 @@
 function ProductService() {
 
     this.insertProduct=function (data,call) {
-        console.log(data)
+        // console.log(data)
         var ProductModule = require('../Modules/ProductModule');
         //(1) 创建对象
         var productModule= new ProductModule();
@@ -11,8 +11,7 @@ function ProductService() {
             name: that.crypto(data.name),
             password:that.crypto(data.password),
             email:data.email
-
-        }
+        };
         //(2)数据操作
 
         this.checkUser(data,function(result) {

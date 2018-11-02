@@ -5,9 +5,9 @@ function ProductModule() {
         this.connection = mysql.createConnection({
             host: 'localhost',       //主机 ip
             user: 'root',            //MySQL认证用户名
-            password: '',                //MySQL认证用户密码
+            password: '123456',                //MySQL认证用户密码
             port: '3306',                 //端口号
-            database: 'signup'          //数据库里面的数据
+            database: 'wetgrade'          //数据库里面的数据
         });
         //2,连接
         this.connection.connect();
@@ -37,8 +37,7 @@ function ProductModule() {
          * 2，userAddSql_Params，sql语句中的值
          * 3，function (err, result)，回调函数，err当执行错误时，回传一个err值，当执行成功时，传回result
          */
-        console.log("userAddSql_Params:"+userAddSql_Params);
-
+        // console.log("userAddSql_Params:"+userAddSql_Params);
         this.connection.query(userAddSql, userAddSql_Params, function (err, result) {
             if (err) {
                 console.log('[INSERT ERROR] - ', err.message);
@@ -48,20 +47,13 @@ function ProductModule() {
         });
         // (3),连接结束
         this.connection.end();
-    }
-
-
+    };
 
     this.login = function (product,call) {
-        // console.log(product.password+"123");
-        // name: 'df', password: 'dfgsdfg'
         var userAddSql = "SELECT password FROM signup WHERE name='"+product.name+"'";
-        //
         // console.log("userAddSql_Params:"+userAddSql_Params);
-        //
         this.connection.query(userAddSql, function (err, result) {
-            console.log(result);
-
+            // console.log(result);
             if (err) {
                 console.log('[INSERT ERROR] - ', err.message);
                 return;
@@ -70,21 +62,19 @@ function ProductModule() {
           if (result==''){
               var body = {
                   insertId : 0
-              }
+              };
               call(body);
             }else  if (result[0].password == product.password){
                 var body = {
                     insertId : 1
-                }
+                };
                 call(body);
             }else  if (result[0].password != product.password){
               var body = {
                   insertId : 2
-              }
+              };
               call(body);
           }
-
-
         });
         // //(3),连接结束
         this.connection.end();

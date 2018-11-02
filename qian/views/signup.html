@@ -42,41 +42,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<input type="password" value=""placeholder="请输入密码" id="Password" name="Password" onfocus="this.placeholder='';" onblur="if (this.placeholder == '') {this.placeholder ='请输入密码';}">
 						<input type="button" value="Go"  onclick="signIn()"  >
 					</form>
-					<script>
-                        function signIn() {
-                            var name = document.getElementById('Username');
-                            var password = document.getElementById('Password');
-                            if (name.value.length<5 ||name.value.length>8){
-                                alert('请输入账号且账号长度不能小于5大于8')
-                            }else if (password.value==''||password.value.length>10&&password.value.length<6) {
-                                alert('请输入密码且密码长度不能小于5大于8')
-                            }else{
-                                $.ajax({
-                                    url: 'signInAction',
-                                    type: "POST",
-                                    data: {
-                                        name: name.value,
-                                        password:password.value
-                                    },
-                                    traditional: true,//这里设置为true
-                                    success: function(data) {
-                                        // alert(JSON.parse(data));
-                                        var data=JSON.parse(data)
-                                        if (data.insertId==1){
-                                            alert("登陆成功")
-                                        }else if (data.insertId==0){
-                                            alert("账号不存在")
-                                        }else if (data.insertId==2){
-                                            alert("账号密码错误")
-                                        }
-                                    }
-                                })
-                            }
-
-
-
-                        }
-					</script>
 					<label>|</label>
 					<a href="signup.html" class="sign-up">注册</a>
 				</div>
