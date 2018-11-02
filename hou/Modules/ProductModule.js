@@ -15,7 +15,7 @@ function ProductModule() {
     //增加商品
     this.insertProduct = function (product, call) {
          //(1),编写sql语句
-        var userAddSql = 'INSERT INTO product(name,sizeSelect_id,colorSelect_id,textarea,image_key,productPrice) VALUES(?,?,?,?,?,?)';
+        var userAddSql = 'INSERT INTO product(name,sizeSelect_id,colorSelect_id,textarea,image_key,produtcPrice) VALUES(?,?,?,?,?,?)';
         var userAddSql_Params = [product.name, product.sizeSelect,product.colorSelect,product.textarea,product.key,product.productPrice];
         //(2),进行插入操作
         /**
@@ -43,7 +43,6 @@ function ProductModule() {
                console.log('[SELECT ERROR] - ', err.message);
                return;
            }
-
             call(result);
 
         });

@@ -47,11 +47,12 @@ var selectProductController = require('./Controllers/selectProductController');
 app.get('/selectProdcut',selectProductController.selectProdcut);
 app.post('/selectProductAction',urlencodedParser,selectProductController.selectProductAction);
 
-
+//管理首页轮播图效果
+var swiperController=require('./Controllers/swiperController');
+app.get('/swiper',swiperController.swiper);
+app.post('/swiperAction',swiperController.swiperAction);
 
 //好
-
-
 
 
 app.listen(8888);

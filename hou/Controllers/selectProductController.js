@@ -3,7 +3,6 @@ exports.selectProdcut=function (req,res) {
 };
 exports.selectProductAction = function (req,res) {
     //(1)解析参数
-
     var productType = req.body.productType;
     // console.log(productType);
 
