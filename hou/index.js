@@ -52,9 +52,9 @@ app.get('/deleteProduct',deleteProductController.deleteProduct);
 app.post('/deleteProduct',selectProductController.deleteProductProduct);
 //修改产品信息
 var updateControllers = require('./Controllers/updateControllers');
-app.get('/updateProduct',updateControllers.updateProduct);
-app.post('/updateProductAction',updateControllers.selectProductAction);
-app.post('/addProductActionTwo',updateControllers.addProductActionTwo);
+app.get('/updateProduct',updateControllers.updateProduct);  //跳转到修改产品信息页面
+app.post('/updateProductAction',updateControllers.selectProductAction); //修改信息之前先进性搜索将要修改的产品检索出来
+app.post('/addProductActionTwo',updateControllers.addProductActionTwo); //对要修改的产品进行修改
 
 
 

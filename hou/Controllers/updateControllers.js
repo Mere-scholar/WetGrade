@@ -1,6 +1,7 @@
 exports.updateProduct=function (req,res) {
     res.render('updateProduct',{});
 };
+//修改产品信息时，进行查询操作
 exports.selectProductAction = function (req,res) {
     //(1)解析参数
     var productType = req.body.productType;
@@ -17,7 +18,7 @@ exports.selectProductAction = function (req,res) {
         res.json(result);
     })
 };
-
+//修改信息--解析用户修改后的值
 exports.addProductActionTwo=function (req,res) {
     //(1)解析参数
     // console.log(req.body);
@@ -47,7 +48,8 @@ exports.addProductActionTwo=function (req,res) {
     },function (result) {
         res.json(result);
     });
-}
+};
+//将webuploader上传的图片进行操作
 exports.upload=function (req, res) {
     var filepath = req.files[0].path;
     //1,引入ImageService模块

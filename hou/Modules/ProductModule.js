@@ -1,4 +1,5 @@
 function ProductModule() {
+    //初始化数据库
     this.init = function () {
         var mysql = require('mysql');  //调用MySQL模块
         //1，创建一个connection
@@ -11,7 +12,7 @@ function ProductModule() {
         });
         //2,连接
         this.connection.connect();
-    }
+    };
     //增加商品
     this.insertProduct = function (product, call) {
          //(1),编写sql语句
@@ -32,7 +33,7 @@ function ProductModule() {
         });
         //(3),连接结束
         this.connection.end();
-    }
+    };
     //查询商品
     this.selectProduct = function (product,call) {
         //编写数据库语句
@@ -50,6 +51,7 @@ function ProductModule() {
         //(3),连接结束
         this.connection.end();
     };
+    //修改产品的时候，进行查询操作
     this.selectProduct2 = function (product,call) {
         // console.log(product.productType);
         //编写数据库语句
@@ -67,7 +69,6 @@ function ProductModule() {
         //(3),连接结束
         this.connection.end();
     };
-
 //    删除商品
     this.deleteProduct = function (product,call) {
         // console.log(product.productId);
@@ -83,9 +84,8 @@ function ProductModule() {
         });
         //(3),连接结束
         this.connection.end();
-    }
-
-    //修改商品
+    };
+    //修改商品时，按照产品ID进行的插入操作
     this.insertProduct2 = function (product, call) {
         //(1),编写sql语句
         // console.log(product.num);
@@ -108,7 +108,6 @@ function ProductModule() {
         //(3),连接结束
         this.connection.end();
     }
-
 }
 
 module.exports = ProductModule;

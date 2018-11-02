@@ -28,6 +28,9 @@
 		overflow: hidden;
 		padding-top: 10px;
 	}
+	.del{
+		cursor: pointer;
+	}
 </style>
 <body>
 
@@ -98,7 +101,7 @@
 																<td>${data[i].sizeSelect_id}</td>
 																<td>${data[i].colorSelect_id}</td>
 																<td>${data[i].textarea}</td>
-																<td style="text-align: center;"><a href="#">修改</a>&nbsp;&nbsp;<a class="del">删除</a></td>
+																<td style="text-align: center;"><a class="del">删除</a></td>
 															`;
                                                             oTable.appendChild(tr);
                                                             var productSelectName = document.querySelector("#productSelectName");

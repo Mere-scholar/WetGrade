@@ -19,7 +19,7 @@ exports.addProductAction=function (req,res) {
     //2,创建对象
     var productService = new ProductService();
     //3, 处理业务逻辑
-    productService.insertProduct2({
+    productService.insertProduct({
         name:name,
         sizeSelect:sizeSelect,
         colorSelect:colorSelect,
