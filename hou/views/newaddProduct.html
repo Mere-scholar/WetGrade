@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>时尚潮品-轮播图添加</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <link href="http://fonts.googleapis.com/css?family=Oxygen|Marck+Script" rel="stylesheet" type="text/css">
+    <link href="assets/css/bootstrap.css" rel="stylesheet">
+    <link href="assets/css/font-awesome.css" rel="stylesheet">
+    <link href="assets/css/admin.css" rel="stylesheet">
+
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/bootstrap.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.staticfile.org/webuploader/0.1.1/webuploader.css">
+    <script src="https://cdn.staticfile.org/webuploader/0.1.1/webuploader.min.js"></script>
+    <script src="https://cdn.staticfile.org/webuploader/0.1.1/Uploader.swf"></script>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="row">
+        <!--使用ejs模板-->
+        <% include menu.html%>
+        <div class="span10">
+            <!--操作区域顶部-->
+            <% include masthead.html%>
+            <!--管理员信息-->
+            <div class="adminInfo">
+                <!--========================================-->
+                <div class="slate">
+
+                    <div class="slate">
+
+                        <div class="page-header">
+                            <h2>增加轮播图片</h2>
+                            <h1 style="color: blue;">我是新品页面</h1>
+                            <h4 style="text-align: right;text-decoration: none"><a href="newProduct" id="deleteAll">返回轮播图页面</a></h4>
+                        </div>
+                        <fieldset>
+                            <!--商品的编号-->
+                            <div class="control-group">
+                                <label class="control-label" for="productId">图片编号</label>
+                                <div class="controls">
+                                    <input type="number" class="input-xlarge" id="productId">
+                                </div>
+                            </div>
+                            <!--图片名称-->
+                            <div class="control-group">
+                                <label class="control-label" for="productName">图片名称</label>
+                                <div class="controls">
+                                    <input type="text" class="input-xlarge" id="productName">
+                                </div>
+                            </div>
+
+                            <!--商品的介绍-->
+                            <div class="control-group">
+                                <label class="control-label" for="textarea">轮播图片的介绍</label>
+                                <div class="controls">
+                                    <textarea class="input-xlarge" id='textarea' rows="3" style="resize: none;"></textarea>
+                                </div>
+                            </div>
+                            <!--商品图片-->
+                            <div class="control-group">
+                                <div id="uploader-demo">
+                                    <!--用来存放item-->
+                                    <div id="fileList" class="uploader-list"></div>
+                                    <div id="filePicker">选择图片</div>
+                                </div>
+                            </div>
+                            <div id="imgBox"></div>
+                            <div id="imgId"></div>
+                            <div id="key" style="display: none"></div>
+                            <button onclick="addProduct()" id="addProduct">上传图片</button>
+                        </fieldset>
+                        <script>
+                            (()=>{
+                                // 初始化Web Uploader
+                                var uploader = WebUploader.create({
+                                    // 选完文件后，是否自动上传。
+                                    auto: true,
+                                    // swf文件路径
+                                    swf: 'https://cdn.staticfile.org/webuploader/0.1.1/Uploader.swf',
+                                    // 文件接收服务端。
+                                    server: 'upload',
+                                    // 选择文件的按钮。可选。
+                                    // 内部根据当前运行是创建，可能是input元素，也可能是flash.
+                                    pick: '#filePicker',
+                                    // 只允许选择图片文件。
+                                    accept: {
+                                        title: 'Images',
+                                        extensions: 'gif,jpg,jpeg,bmp,png',
+                                        mimeTypes: 'image/*'
+                                    }
+                                });
+                                // 文件上传成功，给item添加成功class, 用样式标记上传成功。
+                                uploader.on( 'uploadSuccess', function( file ,response) {
+                                    console.log(response.key);
+                                    //获得服务器的图片
+                                    var imgBox  =document.getElementById('imgBox');
+                                    var url = response.url;
+                                    var img = document.createElement('img');
+                                    img.src=url;
+                                    img.style.width="200px";
+                                    img.style.height="200px";
+                                    img.style.margin = "5px";
+                                    var input = document.getElementById('key');
+                                    input.innerHTML=response.key;
+                                    imgBox.appendChild(img);
+                                });
+                                // 文件上传失败，显示上传出错。
+                                uploader.on( 'uploadError', function( file ) {
+                                    alert("上传错误")
+                                });
+                                var addProduct=document.getElementById("addProduct");
+                                addProduct.onclick=function () {
+                                    // function addProduct() {
+                                    var id=document.getElementById('productId');
+                                    console.log(id.value);
+                                    var name=document.getElementById('productName');
+                                    var image_url=document.getElementById('imgBox');
+                                    console.log(image_url);
+                                    var textarea =document.getElementById('textarea');
+                                    var key = document.getElementById('key');
+                                    //添加数据
+                                    $.ajax({
+                                        url: 'newaddAction',
+                                        type: "POST",
+                                        data: {
+                                            id:id.value,
+                                            name: name.value,
+                                            textarea:textarea.value,
+                                            key:key.innerHTML,
+                                            image_url:image_url.innerHTML
+                                        },
+                                        traditional: true,//这里设置为true
+                                        success: function(data) {
+                                            // alert(JSON.stringify(data));
+                                            alert("添加成功");
+                                        }
+                                    });
+                                    //添加成功之后清除输入框内容
+                                    setTimeout(function () {
+                                        id.value="";
+                                        name.value="";
+                                        textarea.value="";
+                                        key.innerHTML="";
+                                        image_url.innerHTML="";
+                                    },10)
+                                }
+                            })();
+                        </script>
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div> <!-- end span10 -->
+
+    </div> <!-- end row -->
+
+</div> <!-- end container -->
+
+</body>
+
+
+
+</html>

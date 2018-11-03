@@ -14,6 +14,7 @@
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/bootstrap.js"></script>
 </head>
+
 <style>
     #productHandleDel, #productHandleUpdate {
         display: inline-block;
@@ -75,9 +76,9 @@
                     <div class="slate">
                         <div class="page-header">
                             <h2>轮播图效果</h2>
-                            <h4 style="text-align:right"><a href="swiperadd">添加轮播图</a></h4>
+                            <h4 style="text-align:right"><a href="newaddProduct">添加轮播图</a></h4>
                         </div>
-
+                    <h1 style="color:blue">我是新品上市</h1>
                         <!--==================================-->
                         <div class="panel" style="margin-top: 20px;position: relative">
                             <header class="panel-heading" style="margin: 20px 0;">此处为轮播图的修改操作</header>
@@ -105,7 +106,7 @@
                                     var getProductValue = document.querySelector("#getProductValue");
                                     window.onload = function () {
                                         $.ajax({
-                                            url: 'swiperAction',
+                                            url: 'newAction',
                                             type: "post",
                                             // async:false,
                                             data: {},
@@ -133,7 +134,7 @@
                                                         console.log(tr[i].firstElementChild.innerHTML);
                                                         tr[i].remove();
                                                         $.ajax({
-                                                            url: 'swiperdeleAction',
+                                                            url: 'newdeleAction',
                                                             type: "POST",
                                                             data: {
                                                                 id: tr[i].firstElementChild.innerHTML,
@@ -153,7 +154,7 @@
                                                 delAll.onclick=function () {
                                                     getProductValue.firstElementChild.nextSibling.remove();
                                                     $.ajax({
-                                                        url: 'swiperdeleAllAction',
+                                                        url: 'newdeleAllAction',
                                                         type: "POST",
                                                         data: {
                                                         },

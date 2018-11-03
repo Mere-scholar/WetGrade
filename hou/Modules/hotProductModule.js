@@ -1,4 +1,4 @@
-function SwiperModule() {
+function hotProductModule() {
     this.init = function () {
         var mysql = require('mysql');  //调用MySQL模块
         //1，创建一个connection
@@ -30,7 +30,7 @@ function SwiperModule() {
     }
 
     //添加数据
-this.insertProduct = function (product, call) {
+    this.insertProduct = function (product, call) {
         //(1),编写sql语句
         var userAddSql = 'INSERT INTO students(id,name,pay,iamge_key,image_url) VALUES(?,?,?,?,?)';
         var userAddSql_Params = [product.id,product.name, product.textarea,product.key,product.image_url];
@@ -88,4 +88,4 @@ this.insertProduct = function (product, call) {
 
 
 }
-module.exports = SwiperModule;
+module.exports = hotProductModule;

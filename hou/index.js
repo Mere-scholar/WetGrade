@@ -66,6 +66,44 @@ app.post('/addProductActionTwo',updateControllers.addProductActionTwo); //对要
 var swiperController=require('./Controllers/swiperController');
 app.get('/swiper',swiperController.swiper);
 app.post('/swiperAction',swiperController.swiperAction);
+//首页轮播图添加
+var swiperaddController=require('./Controllers/swiperaddController');
+app.get('/swiperadd',swiperaddController.swiperadd);
+app.post('/swiperaddAction',swiperaddController.swiperaddAction);
+//单删除功能
+app.post('/swiperdeleAction',swiperaddController.swiperdeleAction);
+//一键删除表中所有的数据
+app.post('/swiperdeleAllAction',swiperaddController.swiperdeleAllAction);
+
+
+//热销产品管理
+var hotController=require('./Controllers/hotController');
+app.get('/hotProduct',hotController.hotProduct);
+app.post('/hotAction',hotController.hotAction);
+//热销产品添加
+var hotaddController=require('./Controllers/hotAddController');
+app.get('/hotaddProduct',hotaddController.hotaddProduct);
+app.post('/hotaddAction',hotaddController.hotaddAction);
+//单热销产品删除功能
+app.post('/hotdeleAction',hotaddController.swiperdeleAction);
+//一键删除表中热销产品所有的数据
+app.post('/hotdeleAllAction',hotaddController.swiperdeleAllAction);
+
+//新品产品管理
+var newController=require('./Controllers/newController');
+app.get('/newProduct',newController.newProduct);
+app.post('/newAction',newController.newAction);
+//新品产品添加
+var newAddController=require('./Controllers/newAddController');
+app.get('/newaddProduct',newAddController.newaddProduct);
+app.post('/newaddAction',newAddController.newaddAction);
+//单新品产品删除功能
+app.post('/newdeleAction',newAddController.swiperdeleAction);
+//一键删除表中新品产品所有的数据
+app.post('/newdeleAllAction',newAddController.swiperdeleAllAction);
 
 
 app.listen(8888);
+
+//张明星是小狗
+
