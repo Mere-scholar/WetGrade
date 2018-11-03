@@ -41,11 +41,11 @@
                     },
                     traditional: true,//这里设置为true
                     success: function(data) {
-                        // alert(data);
+                        // alert(data.insertId);
                     	if (data.insertId == '-1') {
                             alert(data.msg);
 						}else{
-                            alert(data.msg);
+                            window.location.href="admin";
 						}
                     }
                 });

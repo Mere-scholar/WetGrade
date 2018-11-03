@@ -1,9 +1,12 @@
-
 exports.addProduct=function (req,res) {
-    res.render('addProduct',{});
+    if(req.session.sign){
+        state=2;
+        var user =req.session.user;
+        res.render('addProduct',{user:user});
+    }else{
+        res.render('admin',{});
+    }
 };
-
-
 exports.addProductAction=function (req,res) {
     //(1)解析参数
     var name=req.body.name;

@@ -1,7 +1,12 @@
 exports.deleteProduct=function (req,res) {
-    res.render('deleteProduct',{});
+    if(req.session.sign){
+        state=2;
+        var user =req.session.user;
+        res.render('deleteProduct',{user:user});
+    }else{
+        res.render('admin',{});
+    }
 };
-
 exports.deleteProductProduct = function (req,res) {
     var productId = req.body.id;
     // console.log(productId);

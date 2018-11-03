@@ -1,5 +1,11 @@
 exports.swiper=(req,res)=>{
-    res.render('swiper',{})
+    if(req.session.sign){
+        state=2;
+        var user =req.session.user;
+        res.render('swiper',{user:user});
+    }else{
+        res.render('admin',{});
+    }
 };
 exports.swiperAction=(req,res)=>{
     //控制器把参数传递给业务层，业务层处理之后通过回调机制处理结果

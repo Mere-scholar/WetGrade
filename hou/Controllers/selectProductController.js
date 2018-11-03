@@ -1,5 +1,11 @@
 exports.selectProduct=function (req,res) {
-    res.render('selectProduct',{});
+    if(req.session.sign){
+        state=2;
+        var user =req.session.user;
+        res.render('selectProduct',{user:user});
+    }else{
+        res.render('admin',{});
+    }
 };
 exports.selectProductAction = function (req,res) {
     //(1)解析参数

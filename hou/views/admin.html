@@ -40,10 +40,12 @@
                     traditional: true,//这里设置为true
                     success: function(data) {
                         if (data.state == 0){
-							alert(data.msg)
-						}else if(data.state == 1){
+                            alert(data.msg);
+                        }else if(data.state == 1){
                             alert(data.msg)
-						}
+                        }else if(data.state == 2){
+                            window.location.href="index";
+                        }
                     }
                 });
             }

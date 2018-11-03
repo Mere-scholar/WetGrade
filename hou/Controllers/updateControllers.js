@@ -1,5 +1,11 @@
 exports.updateProduct=function (req,res) {
-    res.render('updateProduct',{});
+    if(req.session.sign){
+        state=2;
+        var user =req.session.user;
+        res.render('updateProduct',{user:user});
+    }else{
+        res.render('admin',{});
+    }
 };
 //修改产品信息时，进行查询操作
 exports.selectProductAction = function (req,res) {

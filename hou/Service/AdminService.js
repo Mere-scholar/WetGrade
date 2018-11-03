@@ -11,15 +11,12 @@ function  adminService() {
 
     this.checkUser=function(adminName,adminPassword,call){
 
-        //(1)用户工具类
-        // let tool=require('../Tools/tool');
-        // var name =tool.crypto(name);
-        // var password =tool.crypto(password);
-
         this.selectUserByName(adminName,function(result){
             let body={
                 state:0,
-                msg:"hello"
+                msg:"hello",
+                username:'',
+                id:''
             };
             //1,获得数组的长度
             let length = result.length;
@@ -28,13 +25,15 @@ function  adminService() {
             }else{
 
                 //2,把密码从数组对象里面取出来
-                let buffer = result[0].adminPassword    ;
+                let buffer = result[0].adminPassword;
                 //3,判断用户是否合法
                 if(adminPassword==buffer){
-                    state:2,
+                    body.state=2,
                     body.msg="登录成功！";
+                    body.username = result[0].adminName;
+                    body.id = result[0].id;
                 }else{
-                    state:1,
+                    body.state=1,
                     body.msg="登录失败，密码错误，请重新输入密码！";
                 }
             }
