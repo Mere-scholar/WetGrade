@@ -16,6 +16,4 @@ exports.register=function (req,res) {
         //3,把数据传给view
         res.json(result);
     });
-
-
 };

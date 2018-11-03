@@ -29,27 +29,45 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<div class="content">
 		<div class="container"> 			         
 		<div class="register">
-		  	  <form method="post" action="/signup">
 				 <div class="  register-top-grid">
 					<h3>注册</h3>
 					<div class="mation">
 						<span>账号：<label>*</label></span>
-						<input type="text"  name="Username" id="Username" class="Username" onblur="user()">
-
+						<input type="text"  name="Username" id="Username" class="Username">
 						<span>密码：<label>*</label></span>
 						<input type="password" name="password" id="password">
-					 
 						 <span>邮箱email：<label>*</label></span>
 						 <input type="email" name="email" id="email">
 					</div>
-					 <!--<div class="clearfix"></div>-->
-					   <!--<a class="news-letter" href="#">-->
-						 <!--<label class="checkbox"><input type="checkbox" name="checkbox" checked=""><i> </i>Sign Up</label>-->
-					   <!--</a>-->
-					 <!--</div>-->
-                  <input type="button" id="signup" value="注册" onclick="signUp()" style="width: 100%;height: 40px;background: #0ff;outline:none; border-radius: 8px;"/>
-				</form>
 
+                  <input type="button" id="signup" value="注册" onclick="signUp()" style="width: 100%;height: 40px;background: #0ff;outline:none; border-radius: 8px;"/>
+
+				<script>
+                    function signUp() {
+                        //1,获得标签节点
+                        var user = document.getElementById('Username');
+                        var email = document.getElementById('email');
+                        var password = document.getElementById('password');
+                        //2，向服务器提交数据
+                        $.ajax({
+                            url: 'signupAction',
+                            type: "POST",
+                            data: {
+                                name: user.value,
+                                email: email.value,
+                                password: password.value
+                            },
+                            traditional: true,//这里设置为true
+                            success: function(data) {
+                                if (data.insertId == '-1') {
+                                    alert(data.msg);
+                                }else{
+                                    alert(data.msg);
+                                }
+                            }
+                        });
+                    }
+				</script>
 
 		   </div>
 		 </div>

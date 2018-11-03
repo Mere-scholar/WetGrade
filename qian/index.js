@@ -26,7 +26,6 @@ var indexControllers = require('./Controllers/indexControllers');
 app.get('/index',indexControllers.index);
 //登录成功记录session
 
-
 //men页面
 var menControllers = require('./Controllers/menControllers');
 app.get('/men',menControllers.men);
@@ -47,6 +46,8 @@ var privacyControllers = require('./Controllers/privacyControllers');
 app.get('/privacy',privacyControllers.privacy);
 //signup页面
 var signupControllers = require('./Controllers/signupControllers');
-
-//this is //this is a this aa
+app.get('/signup',signupControllers.signup);
+//跳转到商品详情页面
+var singleControllers = require('./Controllers/singleControllers');
+app.get('/single',singleControllers.single)
 app.listen(8888);
