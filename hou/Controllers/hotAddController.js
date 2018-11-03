@@ -1,5 +1,11 @@
 exports.hotaddProduct=(req,res)=>{
-    res.render('hotaddProduct',{})
+    if(req.session.sign){
+        state=2;
+        var user =req.session.user;
+        res.render('hotaddProduct',{user:user});
+    }else{
+        res.render('admin',{})
+    }
 };
 //添加数据功能
 exports.hotaddAction=(req,res)=>{

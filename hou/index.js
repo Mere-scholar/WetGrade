@@ -9,7 +9,7 @@ app.use(session({
     saveUninitialized: true,//添加这行
     secret: '12345',
     name: 'express_11_cookie',   //这里的name值得是cookie的name，默认cookie的name是：connect.sid
-    cookie: {maxAge: 60*60*1000 },     //设置maxAge是80000ms，即80s后session和相应的cookie失效过期
+    cookie: {maxAge: 360*60*1000 },     //设置maxAge是80000ms，即80s后session和相应的cookie失效过期
 }));
 var multer = require('multer');
 var fs = require("fs");
@@ -74,7 +74,6 @@ app.post('/swiperaddAction',swiperaddController.swiperaddAction);
 app.post('/swiperdeleAction',swiperaddController.swiperdeleAction);
 //一键删除表中所有的数据
 app.post('/swiperdeleAllAction',swiperaddController.swiperdeleAllAction);
-
 
 //热销产品管理
 var hotController=require('./Controllers/hotController');

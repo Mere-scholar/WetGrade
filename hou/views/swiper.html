@@ -152,17 +152,20 @@
                                                 var delAll=document.getElementById("delAll");
                                                 delAll.onclick=function () {
                                                     getProductValue.firstElementChild.nextSibling.remove();
+                                                    console.log(getProductValue.firstElementChild.nextElementSibling);
                                                     $.ajax({
                                                         url: 'swiperdeleAllAction',
                                                         type: "POST",
                                                         data: {
+
                                                         },
                                                         traditional: true,//这里设置为true
                                                         success: function (data) {
-                                                            if (data.fieldCount == 0) {
-                                                                // alert(data.fieldCount);
-                                                                alert("删除全部数据成功！");
-                                                            }
+                                                            alert(data);
+                                                            // if (data.fieldCount == 0) {
+                                                            //     // alert(data.fieldCount);
+                                                            //     alert("删除全部数据成功！");
+                                                            // }
                                                         }
                                                     });
 

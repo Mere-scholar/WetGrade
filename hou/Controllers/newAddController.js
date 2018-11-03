@@ -1,5 +1,11 @@
 exports.newaddProduct=(req,res)=>{
-    res.render('newaddProduct',{})
+    if(req.session.sign){
+        state=2;
+        var user =req.session.user;
+        res.render('newaddProduct',{user:user});
+    }else{
+        res.render('admin',{});
+    }
 };
 //添加数据功能
 exports.newaddAction=(req,res)=>{

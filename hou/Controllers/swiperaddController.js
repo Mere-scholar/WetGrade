@@ -1,5 +1,14 @@
 exports.swiperadd=(req,res)=>{
-    res.render('swiperadd',{})
+
+    if(req.session.sign){
+        state=2;
+        var user =req.session.user;
+        res.render('swiperadd',{user:user});
+    }else{
+        res.render('admin',{});
+    }
+
+
 };
 //添加数据功能
 exports.swiperaddAction=(req,res)=>{
@@ -47,7 +56,7 @@ exports.swiperdeleAllAction=(req,res)=>{
     //2创建对象
     var swipersservice=new SwiperService();
     //3处理业务逻辑
-    swipersservice.deleteProduct({
+    swipersservice.deleteAllProduct({
     },function (result) {
         res.json(result);
     })

@@ -75,13 +75,13 @@
                 <div class="slate">
                     <div class="slate">
                         <div class="page-header">
-                            <h2>轮播图效果</h2>
-                            <h4 style="text-align:right"><a href="newaddProduct">添加轮播图</a></h4>
+                            <h2>新品预告</h2>
+                            <h4 style="text-align:right"><a href="newaddProduct">添加新品</a></h4>
                         </div>
-                    <h1 style="color:blue">我是新品上市</h1>
+
                         <!--==================================-->
                         <div class="panel" style="margin-top: 20px;position: relative">
-                            <header class="panel-heading" style="margin: 20px 0;">此处为轮播图的修改操作</header>
+                            <header class="panel-heading" style="margin: 20px 0;">此处为新品的修改操作</header>
                             <div class="panel-body" style="height: 400px;">
                                 <table class="table table-bordered" id="getProductValue">
                                     <tr>
@@ -153,6 +153,7 @@
                                                 var delAll=document.getElementById("delAll");
                                                 delAll.onclick=function () {
                                                     getProductValue.firstElementChild.nextSibling.remove();
+                                                    console.log(getProductValue.firstElementChild.nextSibling);
                                                     $.ajax({
                                                         url: 'newdeleAllAction',
                                                         type: "POST",
