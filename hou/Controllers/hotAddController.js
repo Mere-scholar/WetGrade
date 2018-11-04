@@ -14,6 +14,7 @@ exports.hotaddAction=(req,res)=>{
     var textarea = req.body.textarea;
     var key = req.body.key;
     var image_url = req.body.image_url;
+    var price=req.body.price
     //控制器把参数传递给业务层，业务层处理之后通过回调机制处理结果
     //1.引入模块
     var hotService=require('../Service/hotService');
@@ -25,7 +26,8 @@ exports.hotaddAction=(req,res)=>{
         name:name,
         textarea:textarea,
         key:key,
-        image_url:image_url
+        image_url:image_url,
+        price:price
     },function (result) {
         res.json(result);
     });

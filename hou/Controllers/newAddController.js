@@ -9,11 +9,13 @@ exports.newaddProduct=(req,res)=>{
 };
 //添加数据功能
 exports.newaddAction=(req,res)=>{
+    console.log(req.body);
     var id=req.body.id;
     var name = req.body.name;
-    var textarea = req.body.textarea;
+    var desc = req.body.desc;
     var key = req.body.key;
     var image_url = req.body.image_url;
+    var price=req.body.price
     //控制器把参数传递给业务层，业务层处理之后通过回调机制处理结果
     //1.引入模块
     var newService=require('../Service/newService');
@@ -23,9 +25,10 @@ exports.newaddAction=(req,res)=>{
     newservice.addProduct({
         id:id,
         name:name,
-        textarea:textarea,
+        desc:desc,
         key:key,
-        image_url:image_url
+        image_url:image_url,
+        price:price
     },function (result) {
         res.json(result);
     });

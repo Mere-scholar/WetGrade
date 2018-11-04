@@ -87,8 +87,8 @@
                                         <th style="width: 70px;text-align: center;">商品编号</th>
                                         <th style="text-align: center;">名称</th>
                                         <th style="text-align: center;">介绍</th>
-                                        <th style="text-align: center;overflow: hidden;">图片</th>
-                                        <th style="width: 100px;text-align: center;">价钱</th>
+                                        <th style="width: 100px;text-align: center;">图片</th>
+                                        <th style="text-align: center;overflow: hidden;">价钱</th>
                                         <th style="width: 100px;text-align: center;">操作</th>
                                     </tr>
                                     <!--点击搜索按钮显示查询信息-->
@@ -97,7 +97,6 @@
                                     <button class="btn btn-lg" id="delAll">一键全删</button>
                                 </div>
 
-                                <p id="notFound">暂无更多操作</p>
 
                             </div><!-- /.panel-body -->
                             <script>
@@ -114,13 +113,13 @@
                                             success: function (data) {
                                                 // console.log(data)
                                                 for (let one  in data) {
-                                                    // console.log(data[one]);
+                                                    console.log(data[one]);
                                                     getProductValue.innerHTML += `<tr id="one">
                                                     <th>${data[one].id}</th>
                                                     <th>${data[one].name}</th>
                                                     <th>${data[one].pay}</th>
                                                     <th>${data[one].image_url}</th>
-                                                     <th>${data[one].price}</th>
+                                                    <th>${data[one].price}</th>
                                                     <th style="width: 100px;text-align: center;"><span id="del" class="text">删除</span>
                                                    </th>
                                                 </tr>`;
@@ -135,7 +134,7 @@
                                                         console.log(tr[i].firstElementChild.innerHTML);
                                                         tr[i].remove();
                                                         $.ajax({
-                                                            url: 'swiperdeleAction',
+                                                            url: 'hotdeleAction',
                                                             type: "POST",
                                                             data: {
                                                                 id: tr[i].firstElementChild.innerHTML,

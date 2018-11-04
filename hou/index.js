@@ -104,5 +104,4 @@ app.post('/newdeleAllAction',newAddController.swiperdeleAllAction);
 
 app.listen(8888);
 
-//张明星是小狗
 

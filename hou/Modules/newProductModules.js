@@ -32,8 +32,9 @@ function newProductModules() {
     //添加数据
     this.insertProduct = function (product, call) {
         //(1),编写sql语句
-        var userAddSql = 'INSERT INTO newproduct(id,name,pay,image_key,image_url) VALUES(?,?,?,?,?)';
-        var userAddSql_Params = [product.id,product.name, product.textarea,product.key,product.image_url];
+        console.log(product);
+        var userAddSql = 'INSERT INTO newproduct(id,name,textshow,image_key,image_url,price) VALUES(?,?,?,?,?,?)';
+        var userAddSql_Params = [product.id,product.name,product.desc,product.key,product.image_url,product.price];
         //(2),进行插入操作
         /**
          *query，mysql语句执行的方法

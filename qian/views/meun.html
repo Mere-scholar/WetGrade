@@ -9,22 +9,27 @@
                 </ul>
             </div>
             <!--注册登陆部分-->
+
+            <% if(state==2){ %>
             <div class="header-grid-right" >
-                <% if(state==2){ %>
-                    <span class="register" style="color: #fff;"><span class="hidden-xs" style="display: inline-block;float: right;margin-top: 8px;">用户已经登录</span></span>
-                <% }
-                else{%>
-                    <a href="#" class="sign-in">登录</a>
-                    <form method="post" action="/signup">
-                        <input type="text" value="" placeholder="请输入账号" id="usernameReg" name="username" onfocus="this.placeholder='';" onblur="if (this.placeholder == '') {this.placeholder ='请输入账号';}">
-                        <input type="password" value=""placeholder="请输入密码" id="passwordReg" name="password" onfocus="this.placeholder='';" onblur="if (this.placeholder == '') {this.placeholder ='请输入密码';}">
-                        <input type="button" value="Go"  onclick="signIn()"  >
-                    </form>
-                    <label>|</label>
-                    <a href="signup" class="sign-up">注册</a>
-                <%}%>
+                <span class="register" style="color: #fff;"><span class="hidden-xs" style="display: inline-block;float: right;margin-top: 8px;">用户已经登录</span></span>
+            </div>
+            <% }
+            else{%>
+            <div class="header-grid-right" >
+                <a href="#" class="sign-in">登录</a>
+                <form method="post" action="/signup">
+                    <input type="text" value="" placeholder="请输入账号" id="usernameReg" name="username" onfocus="this.placeholder='';" onblur="if (this.placeholder == '') {this.placeholder ='请输入账号';}">
+                    <input type="password" value="" placeholder="请输入密码" id="passwordReg" name="password" onfocus="this.placeholder='';" onblur="if (this.placeholder == '') {this.placeholder ='请输入密码';}">
+                    <input type="button" value="Go"  onclick="signIn()"  >
+                </form>
+                <label>|</label>
+                <a href="signup" class="sign-up">注册</a>
 
             </div>
+            <%}%>
+
+
             <!--登陆发起ajax请求-->
             <script>
                 function signIn() {

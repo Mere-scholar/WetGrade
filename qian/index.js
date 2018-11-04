@@ -54,4 +54,15 @@ app.post('/signupAction',urlencodedParser,signupControllers.signupAction);
 var singleControllers = require('./Controllers/singleControllers');
 app.get('/single',singleControllers.single);
 
-app.listen(8888);
+//首页轮播
+app.get('/homeSlide',indexControllers.homeSlide);
+//addContact
+app.post('/contactAction',urlencodedParser,contactControllers.contactAction);
+
+//热销产品
+app.get('/updatePic',indexControllers.updatePic);
+
+//最新上映
+app.get('/newsPic',indexControllers.newsPic);
+
+app.listen(8080);

@@ -58,9 +58,16 @@
 
                             <!--商品的介绍-->
                             <div class="control-group">
-                                <label class="control-label" for="textarea">新品的介绍</label>
+                                <label class="control-label" for="desc">新品的介绍</label>
                                 <div class="controls">
-                                    <textarea class="input-xlarge" id='textarea' rows="3" style="resize: none;"></textarea>
+                                    <textarea class="input-xlarge" id='desc' rows="3" style="resize: none;"></textarea>
+                                </div>
+                            </div>
+                            <!--图片价钱-->
+                            <div class="control-group">
+                                <label class="control-label" for="price">图片价钱</label>
+                                <div class="controls">
+                                    <input type="text" class="input-xlarge" id="price">
                                 </div>
                             </div>
                             <!--商品图片-->
@@ -77,7 +84,7 @@
                             <button  id="addProduct">上传图片</button>
                         </fieldset>
                         <script>
-                            (()=>{
+                            // (()=>{
                                 // 初始化Web Uploader
                                 var uploader = WebUploader.create({
                                     // 选完文件后，是否自动上传。
@@ -123,7 +130,8 @@
                                     var name=document.getElementById('productName');
                                     var image_url=document.getElementById('imgBox');
                                     console.log(image_url);
-                                    var textarea =document.getElementById('textarea');
+                                    var desc =document.getElementById('desc');
+                                    var price =document.getElementById('price');
                                     var key = document.getElementById('key');
                                     //添加数据
                                     $.ajax({
@@ -131,10 +139,11 @@
                                         type: "POST",
                                         data: {
                                             id:id.value,
-                                            name: name.value,
-                                            textarea:textarea.value,
+                                            name:name.value,
+                                            desc:desc.value,
                                             key:key.innerHTML,
-                                            image_url:image_url.innerHTML
+                                            image_url:image_url.innerHTML,
+                                            price:price.value,
                                         },
                                         traditional: true,//这里设置为true
                                         success: function(data) {
@@ -142,16 +151,17 @@
                                             alert("添加成功");
                                         }
                                     });
-                                    //添加成功之后清除输入框内容
+                                    // 添加成功之后清除输入框内容
                                     setTimeout(function () {
                                         id.value="";
                                         name.value="";
-                                        textarea.value="";
+                                        desc.value="";
                                         key.innerHTML="";
                                         image_url.innerHTML="";
+                                        price.value="";
                                     },10)
                                 }
-                            })();
+                            // })();
                         </script>
                     </div>
 

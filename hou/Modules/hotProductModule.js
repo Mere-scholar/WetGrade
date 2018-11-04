@@ -32,8 +32,9 @@ function hotProductModule() {
     //添加数据
     this.insertProduct = function (product, call) {
         //(1),编写sql语句
+        // console.log(product);
         var userAddSql = 'INSERT INTO hotproduct(id,name,pay,image_key,image_url,price) VALUES(?,?,?,?,?,?)';
-        var userAddSql_Params = [product.id,product.name, product.textarea,product.key,product.image_url,product.price];
+        var userAddSql_Params = [product.id,product.name,product.textarea,product.key,product.image_url,product.price];
         //(2),进行插入操作
         /**
          *query，mysql语句执行的方法
@@ -54,7 +55,7 @@ function hotProductModule() {
 
     //删除单个数据
     this.deleteProduct = function (product,call) {
-        // console.log(product.productId);
+        console.log(product);
         var sql = "DELETE FROM hotproduct WHERE id='"+product.productId+"'";
         //(2),进行插入操作
         this.connection.query(sql,function (err , result) {
@@ -71,7 +72,6 @@ function hotProductModule() {
 
     //删除表内所有的数据
     this.deleteAllProduct = function (product,call) {
-        // console.log(product.productId);
         var sql = "DELETE FROM hotproduct";
         //(2),进行插入操作
         this.connection.query(sql,function (err , result) {

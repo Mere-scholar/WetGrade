@@ -24,3 +24,90 @@ exports.userLogin = function (req,res) {
         res.json(result);
     });
 };
+
+
+//首页轮播
+exports.homeSlide=function(req,res){
+
+    //(1)引入MySQL模块
+    var mysql = require('mysql');
+    //(2)创建一个connection
+    var connection = mysql.createConnection({
+        host: 'localhost',       //主机 ip
+        user: 'root',            //MySQL认证用户名
+        password: '123456',                //MySQL认证用户密码
+        port: '3306',                 //端口号
+        database: 'wetgrade'          //数据库里面的数据
+    });
+    //(3),连接
+    connection.connect();
+    //(4),编写sql语句
+    var picGetSql = "SELECT * FROM swiper";
+    //4,进行查询操作
+    connection.query(picGetSql, function (err, result) {
+        if (err) {
+            console.log('[INSERT ERROR] - ', err.message);
+            return;
+        }
+        // res.end(JSON.stringify(result));
+        res.json(result);
+    });
+};
+
+
+
+//更新首页图片
+
+exports.updatePic=function(req,res){
+
+    //(1)引入MySQL模块
+    var mysql = require('mysql');
+    //(2)创建一个connection
+    var connection = mysql.createConnection({
+        host: 'localhost',       //主机 ip
+        user: 'root',            //MySQL认证用户名
+        password: '123456',                //MySQL认证用户密码
+        port: '3306',                 //端口号
+        database: 'wetgrade'          //数据库里面的数据
+    });
+    //(3),连接
+    connection.connect();
+    //(4),编写sql语句
+    var picGetSql = "SELECT * FROM hotproduct";
+    //4,进行查询操作
+    connection.query(picGetSql, function (err, result) {
+        if (err) {
+            console.log('[INSERT ERROR] - ', err.message);
+            return;
+        }
+        // res.end(JSON.stringify(result));
+        res.json(result);
+    });
+};
+
+exports.newsPic=function(req,res){
+
+    //(1)引入MySQL模块
+    var mysql = require('mysql');
+    //(2)创建一个connection
+    var connection = mysql.createConnection({
+        host: 'localhost',       //主机 ip
+        user: 'root',            //MySQL认证用户名
+        password: '123456',                //MySQL认证用户密码
+        port: '3306',                 //端口号
+        database: 'wetgrade'          //数据库里面的数据
+    });
+    //(3),连接
+    connection.connect();
+    //(4),编写sql语句
+    var picGetSql = "SELECT * FROM newproduct";
+    //4,进行查询操作
+    connection.query(picGetSql, function (err, result) {
+        if (err) {
+            console.log('[INSERT ERROR] - ', err.message);
+            return;
+        }
+        // res.end(JSON.stringify(result));
+        res.json(result);
+    });
+};

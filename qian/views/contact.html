@@ -30,23 +30,47 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<h3>联系我们</h3>
 				<div class=" col-md-9 contact-left">
 				  
-					    <form >
+
 					    	<div>
 						    	<span>名字</span>
-						    	<input name="userName" type="text" class="textbox">
+						    	<input name="userName" id="username" type="text" class="textbox">
 						    </div>
 						    <div>
 						    	<span>邮箱</span>
-						    	<input name="userEmail" type="text" class="textbox">
+						    	<input name="userEmail" id="userEmail" type="text" class="textbox">
 						    </div>
 						    <div>
 						    	<span>您的意见</span>
-						    	<textarea name="userMsg"> </textarea>
+						    	<textarea name="userMsg" id="userMsg"> </textarea>
 						    </div>
 						   <div>
-						   		<span><input type="submit"value="提交"></span>
+						   		<span><input type="button" value="提交" onclick="addContact()"></span>
 						  </div>
-					    </form>
+
+					<script type="text/javascript">
+                        function addContact() {
+                            var name=document.getElementById('username');
+                            var userEmail = document.getElementById('userEmail');
+                            var userMsg = document.getElementById('userMsg');
+                            $.ajax({
+                                url: 'contactAction',
+                                type: "POST",
+                                data: {
+                                    name: name.value,
+                                    userEmail: userEmail.value,
+                                    userMsg:userMsg.value
+                                },
+                                traditional: true,//这里设置为true
+                                success: function(data) {
+
+                                    console.log(JSON.stringify(data));
+
+                                }
+                            });
+                        }
+
+					</script>
+
 				  </div>
 
 				<div class=" col-md-3 contact-right">
